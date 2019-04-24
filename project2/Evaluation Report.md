@@ -62,31 +62,87 @@ TODO
 \<The following types of tests passed with no issues or minor issues (and explain the issues).\>
 \<The following tests failed. Include exact inputs and relevant output.\>
 
-### Fuzzer
+### Fuzzer Functionality
 
-We performed a series of tests on the fuzzer. First, we tested the general functionality, which included specifying the destination address and port and including a default payload. Second, we tested the IP, TCP and application layers separately. The specific tests are described below in detail. We are only providing screenshots for some of the tests due to space restrictions.
+We performed a series of tests on the fuzzer. First, we tested the general functionality, which included specifying the destination address and port and including a default payload. Second, we tested the IP, TCP and application layers separately. The specific tests are described below in detail.
 
 The following types of tests passed with no issues or minor issues:
 
 **(1) General: specifying the destination address and port.**
 
-Command: ``
+Command: `sudo python3 fuzz.py -I -ittl -D 160.39.6.141 -DP 1338`
 
-Result: 
+Result: packets are being sent to the specified destination address and port (see screenshot).
+
+![WechatIMG10](/Users/cmouse/Documents/Columbia Spring 2019/W4182 Security II/project2/img/WechatIMG10.jpeg)
 
 **(2) General: including a default payload.**
 
-Command:
+Command: `sudo python3 fuzz.py -I -ittl -D 160.39.6.141 -DP 1338`
+
+Result: the packets sent include the default payload (see screenshot for 1).
+
+**(3) IP layer: fuzzing all fields.**
+
+Command: `sudo python3 fuzz.py -I -D 160.39.6.141 -DP 1338`
 
 Result:
 
-(3) IP layer: fuzzing all fields.
+**(4) IP layer: run default set of tests (all values).**
 
-Command:
+Command: 
 
 Result:
+
+**(5) IP layer: run custom set of tests.**
+
+Command: 
+
+Result:
+
+**(6) TCP layer: fuzzing all fields.**
+
+Command: 
+
+Result:
+
+**(7) TCP layer: run default set of tests (all values).**
+
+Command: 
+
+Result:
+
+**(8) TCP layer: run custom set of tests.**
+
+Command: 
+
+Result:
+
+
+
+None of the tests failed completely.
 
 In general, this fuzzer was able to pass most of the tests we performed.
+
+### Server Functionality
+
+When testing the server, we are using the application layer fuzzer to send packets, since the server was not required to work with IP and TCP layer fuzzing. We performed the following four tests:
+
+**(1) Read hex pattern from file.**
+
+
+
+**(2) Match with correct patterns.**
+
+
+
+**(3) Not match with incorrect patterns.**
+
+
+
+**(4) Send appropriate response to client.**
+
+
 
 ## Part 4: Error Handling
 

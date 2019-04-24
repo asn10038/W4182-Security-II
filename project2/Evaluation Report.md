@@ -97,18 +97,13 @@ TODO
 
 ## Part 5: Clarity of the Code/Comments
 
-TODO
-
-\<comments, reason for point deductions, required code snippets, inputs and outputs to show the
-modifications and that they worked\>
-
 The code is well organized and well commented.
 
 For the fuzzer, the code for the IP, TCP and application layers are distinctively separated into the files `ip_fuzzer.py`, `tcp_fuzzer.py` and `app_fuzzer.py` and represented by the classes `IPFuzzer`, `TCPFuzzer` and `APPFuzzer`. We believe this shows good practice.
 
 Inside each class, different functionalities are also separated into different methods, such as `_get_payload`, `_fuzz_from_file` and `_fuzz_by_fields`. As we can see, the names of the methods are very representative and they make the code very readable.
 
-Sufficient comments are provided and it is easy to understand what the code is doing. Here is an example from `src/ip_fuzzer.py`:
+Ample comments are provided and it is easy to understand what the code is doing. Here is an example from `src/ip_fuzzer.py`:
 
 ```python
 try:
@@ -131,13 +126,14 @@ except IOError:
     		...
 ```
 
-For the server, 
-
-We do recommend moving `fuzz.py` to `src/` for better organization. Also `src/fuzzer-main.py` does not seem to be needed. In general, we did not find any reasons to deduct points for this part, so we are assigning a 10.
+Server code is relatively short and it is also easy to understand. We do recommend moving `fuzz.py` to `src/` for better organization. Also `src/fuzzer-main.py` and `src/server2.py` do not seem to be needed. In general, we did not find any reasons to deduct points for this part, so we are assigning a 10.
 
 ## Part 6: Code Modification
 
 TODO
+
+\<comments, reason for point deductions, required code snippets, inputs and outputs to show the
+modifications and that they worked\>
 
 
 

@@ -16,7 +16,7 @@ TODO: Write a few sentences.
 
 | Criteria                     | Rating  |
 | ---------------------------- | ------- |
-| Installation                 | TODO/10 |
+| Installation                 | 9/10    |
 | User Guide                   | TODO/10 |
 | Program functionality        | TODO/50 |
 | Error handling               | TODO/20 |
@@ -24,15 +24,21 @@ TODO: Write a few sentences.
 
 ## Part 1: Installation
 
-TODO
+We cloned the repo and followed the instructions in `installation_guide.md`. We are installing the fuzzer on a Ubuntu 18.04 Desktop running in a VirtualBox VM. To ensure that the dependencies are fully listed in the installation guide, we are starting from a clean virtual environment.
 
-\<comments, reason for point deductions\>
+The installation works per the instructions with no problems. We are able to copy and paste most of the commands without modifying anything. The only exception was step 9, which is "run the client by `sudo python3 *src* *dst* *sport* *dport*`". We believe the command should be `sudo python3 client.py *src* *dst* *sport* *dport*`.
+
+The instructions are mostly clear, being specific shell commands, with the exception of "using net-tools, find the ipv4 address of the server VM". While this is clear enough to people who are familiar with net-tools, we believe the instruction could be made more friendly to the general user by directing listing the `ifconfig` command.
+
+Overall we are assigning a rating of 9 for installation, with .5 points deducted for each of the two issues mentioned above.
 
 ## Part 2: User Guide
 
 TODO
 
 \<comments, reason for point deductions\>
+
+We followed the instructions in `user_guide.md`.
 
 ## Part 3: Program Functionality
 

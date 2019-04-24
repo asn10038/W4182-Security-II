@@ -130,7 +130,46 @@ Server code is relatively short and it is also easy to understand. We do recomme
 
 ## Part 6: Code Modification
 
-TODO
+### Adding Logging Information to the Server
+#### Before
+```
+# server had no command line arguments
+```
+#### After 
+* Adding the command line argument parsing
+```
+log_file = None
+if len(sys.argv) > 2 and sys.argv[1] == '-L':
+    log_file = sys.argv[2]
+```
+* Printing the information to the file
+```
+#send valid/invalid
+                if pattern in data[:len(pattern)]:
+                    print("valid!")
+                    valid += 1
+                    conn.sendall(b"0x000x000x000x00")
+                else:
+                    print("invalid!")
+                    invalid += 1
+                    conn.sendall(b"0xff0xff0xff0xff")
+############ ADDITIONAL CODE ###################
+                if log_file is not None:
+                    with open(log_file, "wa"):
+                        log_file.write(pattern)
+################################################
+
+                #data parsing
+                if not data:
+                    break
+                if not data.endswith('\r\n'):
+                    continue
+                lines = data.split('\r\n')
+                for line in lines:
+                    print(line)
+                data = ''
+
+```
 
 \<comments, reason for point deductions, required code snippets, inputs and outputs to show the
 modifications and that they worked\>

@@ -20,7 +20,7 @@ Here are the ratings we assigned for each criteria. You can find more specific e
 | User Guide                   | 9/10    |
 | Program functionality        | TODO/50 |
 | Error handling               | TODO/20 |
-| Clarity of the code/comments | TODO/10 |
+| Clarity of the code/comments | 10/10   |
 
 ## Part 1: Installation
 
@@ -62,6 +62,32 @@ TODO
 \<The following types of tests passed with no issues or minor issues (and explain the issues).\>
 \<The following tests failed. Include exact inputs and relevant output.\>
 
+### Fuzzer
+
+We performed a series of tests on the fuzzer. First, we tested the general functionality, which included specifying the destination address and port and including a default payload. Second, we tested the IP, TCP and application layers separately. The specific tests are described below in detail. We are only providing screenshots for some of the tests due to space restrictions.
+
+The following types of tests passed with no issues or minor issues:
+
+**(1) General: specifying the destination address and port.**
+
+Command: ``
+
+Result: 
+
+**(2) General: including a default payload.**
+
+Command:
+
+Result:
+
+(3) IP layer: fuzzing all fields.
+
+Command:
+
+Result:
+
+In general, this fuzzer was able to pass most of the tests we performed.
+
 ## Part 4: Error Handling
 
 TODO
@@ -75,6 +101,39 @@ TODO
 
 \<comments, reason for point deductions, required code snippets, inputs and outputs to show the
 modifications and that they worked\>
+
+The code is well organized and well commented.
+
+For the fuzzer, the code for the IP, TCP and application layers are distinctively separated into the files `ip_fuzzer.py`, `tcp_fuzzer.py` and `app_fuzzer.py` and represented by the classes `IPFuzzer`, `TCPFuzzer` and `APPFuzzer`. We believe this shows good practice.
+
+Inside each class, different functionalities are also separated into different methods, such as `_get_payload`, `_fuzz_from_file` and `_fuzz_by_fields`. As we can see, the names of the methods are very representative and they make the code very readable.
+
+Sufficient comments are provided and it is easy to understand what the code is doing. Here is an example from `src/ip_fuzzer.py`:
+
+```python
+try:
+    f = open(self._payload_addr, "r")
+    payloads = f.readlines()
+    if len(payloads) < 1:
+				f.close()
+        raise IOError
+
+    # try parsing the first line as hex
+    try:
+    		payload = bytes.fromhex(payloads[0]) # only reads the first line of the file
+        print("using payload: 0x" + payloads[0])
+    except ValueError:
+        # if cannot be parsed as hex, raise exception
+        print("%s cannot be parsed as hex" % (payloads[0]))
+        raise FieldAttributeException
+except IOError:
+        #file cannot be read. Create with 0x00
+    		...
+```
+
+For the server, 
+
+We do recommend moving `fuzz.py` to `src/` for better organization. Also `src/fuzzer-main.py` does not seem to be needed. In general, we did not find any reasons to deduct points for this part, so we are assigning a 10.
 
 ## Part 6: Code Modification
 

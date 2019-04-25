@@ -118,6 +118,14 @@ Command:
 
 Result:
 
+**(9) Application layer: run default set of tests.**
+
+Command: `sudo python3 fuzz.py -A -amin 4 -amax 16 -N 10 -D 160.39.6.141 -DP 1343 -S 160.39.6.46 -SP 1340`
+
+**(10) Application layer: run custom set of tests.**
+
+**(11) Application layer: receive and process server's response.**
+
 
 
 None of the tests failed completely.
@@ -186,17 +194,20 @@ Server code is relatively short and it is also easy to understand. We do recomme
 
 ## Part 6: Code Modification
 
-TODO
-
-\<comments, reason for point deductions, required code snippets, inputs and outputs to show the
-modifications and that they worked\>
+TODO: Code snippets, Wireshark display (maybe)
 
 
 
+Fuzzer command: `sudo python3 fuzz.py -A -N 2 -D 160.39.6.141 -DP 1349 -S 160.39.6.46 -SP 1350 -Z log.txt`
 
+Server command: `sudo python3 run_server.py -L logserver.txt`
 
-Requirements for report:
+Fuzzer results:
 
-A report consisting entirely incomplete sentences, typing/spelling/grammatical errors and mostly bullet lists in plain text format will receive no or little credit.
+![WechatIMG11](/Users/cmouse/Documents/Columbia Spring 2019/W4182 Security II/project2/img/WechatIMG11.jpeg)
 
-A nicely formatted report clearly and thoroughly explaining the reason for each rating/point deduction, what was tested and what code changes were made will receive most or all credit. Consider including tables indicating each test and the result, and including copies or screenshots of terminal output showing correct results or errors.
+Server results:
+
+![WechatIMG12](/Users/cmouse/Documents/Columbia Spring 2019/W4182 Security II/project2/img/WechatIMG12.jpeg)
+
+As we can see, both the server and the fuzzer logs the packets received/sent in the specified log file. Thus the logging functionality is working correctly!
